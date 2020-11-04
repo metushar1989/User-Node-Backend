@@ -2,9 +2,14 @@ const userService = require('./services');
 const { success, catchError, itemNotFound } = require('../utils/apiResponse')
 const logTag = `User-Controller`
 
+/**
+ * 
+ * @param {*} req.body {firstName : string ,lastName: string , email:string, phone:number} 
+ * @param {*} res {status:boolean ,success:{code :string,data:object,message:string},error :{message:string,code}}
+ * @Request_Type : POST
+ */
 const createUser = (async (req, res) => {
     try {
-
         const body = req.body
         console.log(`${logTag} | createUser | body => ${JSON.stringify(body)}`)
         const userResp = await userService.createUser(body);
@@ -12,10 +17,15 @@ const createUser = (async (req, res) => {
         else res.send(success(userResp, `${userResp.firstName} ${userResp.lastName} User Create.`));
     } catch (error) {
         res.send(catchError(error, 500));
-        // res.status(500).json({ error })
     }
 })
 
+/**
+ *
+ * @param {*} req.body {firstName : string ,lastName: string , email:string, phone:number,_id:Object(id)}
+ * @param {*} res {status:boolean ,success:{code :string,data:object,message:string},error :{message:string,code}}
+ * @Request_Type : PUT
+ */
 const updateUserById = (async (req, res) => {
     try {
         const body = req.body
@@ -28,6 +38,12 @@ const updateUserById = (async (req, res) => {
     }
 })
 
+/**
+ *
+ * @param {*} req.query {firstName : string ,lastName: string , email:string, phone:number,_id:Object(id)}
+ * @param {*} res {status:boolean ,success:{code :string,data:object,message:string},error :{message:string,code}}
+ * @Request_Type : GET
+ */
 const getAllUser = (async (req, res) => {
     try {
         const query = req.query
@@ -47,6 +63,12 @@ const getAllUser = (async (req, res) => {
     }
 })
 
+/**
+ *
+ * @param {*} req.query {_id:Object(id)}
+ * @param {*} res {status:boolean ,success:{code :string,data:object,message:string},error :{message:string,code}}
+ * @Request_Type : PUT
+ */
 const deleteUser = (async (req, res) => {
     try {
         const body = req.body;
