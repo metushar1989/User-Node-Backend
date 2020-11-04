@@ -1,0 +1,16 @@
+#Mac Local Folder
+.DS_Store
+
+# Dependency directories
+node_modules/
+
+# dotenv environment variables file
+.env
+
+# Debugger Conf
+.vscode
+
+# logs
+logs
+
+.idea
